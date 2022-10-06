@@ -195,13 +195,11 @@ namespace DemoUI
             if (rx == 0 && tx == 0)
             {
                 //Text = titleBase;
-                Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));
-                notifyIcon1.Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));
+                Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));               
             }
             else
             {
-                Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));
-                notifyIcon1.Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));
+                Text = string.Format("{0} - Входящий: {1}, Исходящий: {2}", titleBase, formatBytes(rx), formatBytes(tx));               
             }
         }
 
