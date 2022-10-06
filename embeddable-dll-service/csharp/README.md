@@ -1,7 +1,7 @@
-# Aксиома VPN клиент
+# РђРєСЃРёРѕРјР° VPN РєР»РёРµРЅС‚
 
-Клиент использует тунель [embeddable-dll-service](https://github.com/dcorsk/AksiomaVPN/blob/main/embeddable-dll-service/README.md).
+РљР»РёРµРЅС‚ РёСЃРїРѕР»СЊР·СѓРµС‚ С‚СѓРЅРµР»СЊ [embeddable-dll-service](https://github.com/dcorsk/AksiomaVPN/blob/main/embeddable-dll-service/README.md).
 
-## Компиляция
+## РљРѕРјРїРёР»СЏС†РёСЏ
 
 The code in this repository can be built in Visual Studio 2019 by opening the .sln and pressing build. However, it requires [`tunnel.dll` and `wireguard.dll`](../README.md).
