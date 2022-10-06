@@ -52,29 +52,30 @@ namespace DemoUI
             for (int i = 0; i < second.Length; i++)
             {
                 System.Diagnostics.Debug.WriteLine(second[i]);
-                if (second[i].Contains(str1)) { configFileRT = second[i]; } else {
-                    MessageBox.Show("Не помещен в папку CONFIG файл UFA.conf.\r\nВыход из программы!", "Предупреждение",MessageBoxButtons.OK,
-                                    MessageBoxIcon.Hand,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
-                    threadsRunning = false;
-                    logPrintingThread.Interrupt();
-                    transferUpdateThread.Interrupt();
-                    try { logPrintingThread.Join(); } catch { }
-                    try { transferUpdateThread.Join(); } catch { }
-                    Application.Exit();
-                }
-                if (second[i].Contains(str2)) { configFileUFA = second[i]; }
-                else
-                {
-                    MessageBox.Show("Не помещен в папку CONFIG файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                    threadsRunning = false;
-                    logPrintingThread.Interrupt();
-                    transferUpdateThread.Interrupt();
-                    try { logPrintingThread.Join(); } catch { }
-                    try { transferUpdateThread.Join(); } catch { }
-                    Application.Exit();
-                }
-
+                if (second[i].Contains(str1)) { configFileRT = second[i]; }                               
+                if (second[i].Contains(str2)) { configFileUFA = second[i]; }                
+            }
+            if (configFileUFA=="")
+            {
+                MessageBox.Show("Не помещен в папку CONFIG файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                                MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                threadsRunning = false;
+                logPrintingThread.Interrupt();
+                transferUpdateThread.Interrupt();
+                try { logPrintingThread.Join(); } catch { }
+                try { transferUpdateThread.Join(); } catch { }
+                Application.Exit();
+            }
+            if (configFileRT=="")
+            {
+                MessageBox.Show("Не помещен в папку CONFIG файл UFA.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                                MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                threadsRunning = false;
+                logPrintingThread.Interrupt();
+                transferUpdateThread.Interrupt();
+                try { logPrintingThread.Join(); } catch { }
+                try { transferUpdateThread.Join(); } catch { }
+                Application.Exit();
             }
         }
 
