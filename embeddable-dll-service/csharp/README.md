@@ -1,7 +1,7 @@
-# Example WireGuard Demo Client for Windows
+# Aксиома VPN клиент
 
-This is a simple client for demo.wireguard.com, which brings up WireGuard tunnels using the [embeddable-dll-service](https://git.zx2c4.com/wireguard-windows/about/embeddable-dll-service/README.md).
+Клиент использует тунель [embeddable-dll-service](https://github.com/dcorsk/AksiomaVPN/blob/main/embeddable-dll-service/README.md).
 
-## Building
+## Компиляция
 
 The code in this repository can be built in Visual Studio 2019 by opening the .sln and pressing build. However, it requires [`tunnel.dll` and `wireguard.dll`](../README.md).
