@@ -57,7 +57,7 @@ namespace DemoUI
             }
             if (configFileUFA=="")
             {
-                MessageBox.Show("Не помещен в папку CONFIG файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                MessageBox.Show("Не помещен в папку CONFIG файл UFA.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
                                 MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 threadsRunning = false;
                 logPrintingThread.Interrupt();
@@ -68,7 +68,7 @@ namespace DemoUI
             }
             if (configFileRT=="")
             {
-                MessageBox.Show("Не помещен в папку CONFIG файл UFA.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                MessageBox.Show("Не помещен в папку CONFIG файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
                                 MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 threadsRunning = false;
                 logPrintingThread.Interrupt();
@@ -85,11 +85,23 @@ namespace DemoUI
             var str1 = "because we stopped";
             var str2 = "did not complete";
             var str3 = "Shutting down";
+            var str4 = "Служба не ответила на запрос";
             while (threadsRunning)
             {
                 var lines = log.FollowFromCursor(ref cursor);
                 foreach (var line in lines)
                 {
+                    if (line.Contains(str4)) 
+                    {
+                        MessageBox.Show("Выключите лишние службы.\r\nВыход из программы!", "Ошибка инциилизации службы Wireguard", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        threadsRunning = false;
+                        logPrintingThread.Interrupt();
+                        transferUpdateThread.Interrupt();
+                        try { logPrintingThread.Join(); } catch { }
+                        try { transferUpdateThread.Join(); } catch { }
+                        Application.Exit();
+                    }
 
                     if (line.Contains(str1) || line.Contains(str2)) 
                     {
