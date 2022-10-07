@@ -18,7 +18,7 @@ namespace DemoUI
 {
     public partial class MainWindow : Form
     {
-        private static readonly string userDirectory = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Config"); //TODO: put in Program Files in real code.
+        private static readonly string userDirectory = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), ""); //TODO: put in Program Files in real code.
         private static string configFileUFA = "";
         private static string configFileRT = "";
         private static string configFile = "";
@@ -46,10 +46,7 @@ namespace DemoUI
         private void makeConfigDirectory()
         {
             var str1 = "_RT";
-            var str2 = "_UFA";
-            var ds = new DirectorySecurity();
-            ds.SetSecurityDescriptorSddlForm("O:BAG:BAD:PAI(A;OICI;FA;;;BA)(A;OICI;FA;;;SY)");
-            FileSystemAclExtensions.CreateDirectory(ds, userDirectory);
+            var str2 = "_UFA";            
             string[] second = Directory.GetFiles(userDirectory);
             for (int i = 0; i < second.Length; i++)
             {
@@ -59,7 +56,7 @@ namespace DemoUI
             }
             if (configFileUFA=="")
             {
-                MessageBox.Show("Не помещен в папку CONFIG файл UFA.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                MessageBox.Show("Не помещен файл UFA.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
                                 MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 threadsRunning = false;
                 logPrintingThread.Interrupt();
@@ -70,7 +67,7 @@ namespace DemoUI
             }
             if (configFileRT=="")
             {
-                MessageBox.Show("Не помещен в папку CONFIG файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
+                MessageBox.Show("Не помещен файл RT.conf.\r\nВыход из программы!", "Предупреждение", MessageBoxButtons.OK,
                                 MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 threadsRunning = false;
                 logPrintingThread.Interrupt();
