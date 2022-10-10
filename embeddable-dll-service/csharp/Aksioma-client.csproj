@@ -10,14 +10,7 @@
     <Platforms>x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationManifest>AksiomaUI\app.manifest</ApplicationManifest>
-    <EnableNETAnalyzers>false</EnableNETAnalyzers>
-    <Version>1.3.0</Version>
-    <Copyright>Аксиома</Copyright>
-    <NeutralLanguage>ru</NeutralLanguage>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Aksioma.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <AnalysisLevel>последний</AnalysisLevel>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
