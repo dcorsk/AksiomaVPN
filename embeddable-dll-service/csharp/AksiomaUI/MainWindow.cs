@@ -22,8 +22,7 @@ namespace DemoUI
         private static string configFileUFA = "";
         private static string configFileRT = "";
         private static string configFile = "";
-        private static string open = "0";
-        private static readonly string IP = "10.8.0.1";
+        private static string open = "0";        
         private static readonly string logFile = Path.Combine(userDirectory, "log.bin");
 
         private Tunnel.Ringlogger log;
@@ -39,8 +38,7 @@ namespace DemoUI
             try { File.Delete(logFile); } catch { }
             log = new Tunnel.Ringlogger(logFile, "GUI");
             logPrintingThread = new Thread(new ThreadStart(tailLog));
-            transferUpdateThread = new Thread(new ThreadStart(tailTransfer));
-            new Thread(PingThread).Start(IP);
+            transferUpdateThread = new Thread(new ThreadStart(tailTransfer));        
         }
 
         private void makeConfigDirectory()
@@ -77,44 +75,7 @@ namespace DemoUI
                 Application.Exit();
             }
         }
-        static bool IsPingable(string ip)
-        {
-            var ping = new System.Net.NetworkInformation.Ping();
-            try
-            {
-                return ping.Send(ip).Status == System.Net.NetworkInformation.IPStatus.Success;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                ping.Dispose();
-            }
-        }
-
-        void PingThread(object data)
-        {
-            string ip = (string)data;
-            int pingTry = 0;
-            System.Diagnostics.Debug.WriteLine("Ping");
-            while (pingTry < 7)
-            {
-                if (IsPingable(ip))
-                {
-                    //Invoke((Action)(() => pingPic.Visible = false));
-                    break;
-                }
-                else
-                {
-                    pingTry += 1;
-                    Thread.Sleep(1000);
-                }
-            }
-
-            //Invoke((Action)(() => btnPing.Enabled = false));
-        }
+               
 
         private void tailLog()
         {
@@ -187,6 +148,11 @@ namespace DemoUI
                 {
                     while (threadsRunning)
                     {
+                        System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
+                        System.Net.NetworkInformation.PingReply pingReply = ping.Send("10.8.0.1");
+                        //System.Diagnostics.Debug.WriteLine(pingReply.RoundtripTime); 
+                        //System.Diagnostics.Debug.WriteLine(pingReply.Status);        
+                        //System.Diagnostics.Debug.WriteLine(pingReply.Address);       
                         try
                         {
                             adapter = Tunnel.Service.GetAdapter(configFile);
