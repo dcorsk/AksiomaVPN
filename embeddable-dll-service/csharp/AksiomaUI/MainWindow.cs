@@ -78,7 +78,7 @@ namespace DemoUI
             string ExePath = System.Windows.Forms.Application.ExecutablePath;
             RegistryKey reg;
             reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
-            reg.DeleteValue("Aksioma_VPN");
+            try { reg.DeleteValue("Aksioma_VPN"); } catch { }
             reg.SetValue("Aksioma_VPN", ExePath);
             reg.Close();           
         }
