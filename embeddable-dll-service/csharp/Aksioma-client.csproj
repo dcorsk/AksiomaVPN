@@ -14,10 +14,10 @@
     <Version>1.3.0</Version>
     <Copyright>Аксиома</Copyright>
     <NeutralLanguage>ru</NeutralLanguage>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Aksioma.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <AnalysisLevel>5.0</AnalysisLevel>
+    <AnalysisLevel>последний</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
