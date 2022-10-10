@@ -13,6 +13,7 @@ using System.IO.Pipes;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Security.AccessControl;
+using Microsoft.Win32;
 
 namespace DemoUI
 {
@@ -74,6 +75,12 @@ namespace DemoUI
                 try { transferUpdateThread.Join(); } catch { }
                 Application.Exit();
             }
+            string ExePath = System.Windows.Forms.Application.ExecutablePath;
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            reg.DeleteValue("Aksioma_VPN");
+            reg.SetValue("Aksioma_VPN", ExePath);
+            reg.Close();           
         }
                
 
