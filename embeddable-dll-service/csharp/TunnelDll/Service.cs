@@ -59,7 +59,9 @@ namespace Tunnel
                         throw new Win32Exception(Marshal.GetLastWin32Error());
 
                     if (!Win32.StartService(service, 0, null))
+                    {
                         throw new Win32Exception(Marshal.GetLastWin32Error());
+                    }
 
                     if (ephemeral && !Win32.DeleteService(service))
                         throw new Win32Exception(Marshal.GetLastWin32Error());
